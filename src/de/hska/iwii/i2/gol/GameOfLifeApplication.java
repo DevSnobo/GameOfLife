@@ -147,7 +147,11 @@ public class GameOfLifeApplication extends Application {
      *
      * @param args Argumente, die dem Programm uebergeben wurden.
      */
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws Exception {
+        try {
+            launch(args);
+        } catch (Exception e) {
+            throw new Exception("Test1");
+        }
     }
 }
