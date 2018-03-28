@@ -13,7 +13,12 @@ public class GameOfLifeLogic {
 
 
     public void setStartGeneration(boolean[][] generation) {
-        this.currentGeneration = generation;
+        this.currentGeneration = new boolean[generation.length][generation[0].length];
+
+        for (int i = 0; i < generation.length; i++) {
+            System.arraycopy(generation[i], 0, this.currentGeneration[i], 0, generation[i].length);
+        }
+
         this.nextGeneration = new boolean[currentGeneration.length][currentGeneration[0].length];
     }
 
@@ -28,16 +33,14 @@ public class GameOfLifeLogic {
             }
         }
 
-        this.nextGeneration = currentEvolution;
+        for (int i = 0; i < currentEvolution.length; i++) {
+            System.arraycopy(currentEvolution[i], 0, this.nextGeneration[i], 0, currentEvolution[i].length);
+        }
     }
 
     public boolean isCellAlive(int x, int y) {
-        /**try {
-            boolean temp = this.currentGeneration[x][y];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException("Error, combination of index x: [" + x + "] and index y: [" + y
-                    + "] is not part of the game board!");
-        }*/
+        if (x < 0 || x > this.currentGeneration.length || y < 0 || y > this.currentGeneration[0].length)
+            return false;
         return this.currentGeneration[x][y];
     }
 
@@ -53,35 +56,33 @@ public class GameOfLifeLogic {
         }
 
         for (int loopCount = 1; loopCount < 9; loopCount++) {
-            try {
-                switch (loopCount) {
-                    case 1:
-                        neighbourCounter += addOne(row - 1, col - 1);
-                        break;
-                    case 2:
-                        neighbourCounter += addOne(row - 1, col);
-                        break;
-                    case 3:
-                        neighbourCounter += addOne(row - 1, col + 1);
-                        break;
-                    case 4:
-                        neighbourCounter += addOne(row, col + 1);
-                        break;
-                    case 5:
-                        neighbourCounter += addOne(row + 1, col + 1);
-                        break;
-                    case 6:
-                        neighbourCounter += addOne(row + 1, col);
-                        break;
-                    case 7:
-                        neighbourCounter += addOne(row + 1, col - 1);
-                        break;
-                    case 8:
-                        neighbourCounter += addOne(row, col - 1);
-                        break;
-                }
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("Test2");
+            switch (loopCount) {
+                case 1:
+                    neighbourCounter += addOne(row - 1, col - 1);
+                    break;
+                case 2:
+                    neighbourCounter += addOne(row - 1, col);
+                    break;
+                case 3:
+                    neighbourCounter += addOne(row - 1, col + 1);
+                    break;
+                case 4:
+                    neighbourCounter += addOne(row, col + 1);
+                    break;
+                case 5:
+                    neighbourCounter += addOne(row + 1, col + 1);
+                    break;
+                case 6:
+                    neighbourCounter += addOne(row + 1, col);
+                    break;
+                case 7:
+                    neighbourCounter += addOne(row + 1, col - 1);
+                    break;
+                case 8:
+                    neighbourCounter += addOne(row, col - 1);
+                    break;
+                default:
+                    break;
             }
         }
         return neighbourCounter;
