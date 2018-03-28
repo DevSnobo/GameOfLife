@@ -41,3 +41,4 @@ Thumbs.db
 .idea/workspace.xml
 .idea/checkstyle-idea.xml
 lib/*
+out/*
