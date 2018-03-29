@@ -27,9 +27,7 @@ public class GameOfLifeLogic {
 
         for (int row = 0; row < currentGeneration.length; row++) {
             for (int col = 0; col < currentGeneration[row].length; col++) {
-
                 currentEvolution[row][col] = evaluateNextState(checkNeighbours(row, col));
-
             }
         }
 
@@ -39,10 +37,8 @@ public class GameOfLifeLogic {
     }
 
     public boolean isCellAlive(int x, int y) {
-        if (x < 0 || x > this.currentGeneration.length - 1 || y < 0 || y > this.currentGeneration[0].length - 1) {
-            return false;
-        }
-        return this.currentGeneration[x][y];
+        return (!(x < 0 || x > this.currentGeneration.length - 1 || y < 0 || y > this.currentGeneration[0].length - 1))
+                && this.currentGeneration[x][y];
     }
 
     private boolean evaluateNextState(int number) {
