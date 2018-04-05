@@ -137,6 +137,7 @@ public class GameOfLifeApplication extends Application {
     private void nextGeneration(PauseTransition pt) {
         if (currentStartGeneration != null) {
             gol.nextGeneration();
+            golCanvas.setStartGeneration(gol.getNextGeneration());
             golCanvas.paint();
         }
         pt.play();
@@ -147,11 +148,7 @@ public class GameOfLifeApplication extends Application {
      *
      * @param args Argumente, die dem Programm uebergeben wurden.
      */
-    public static void main(String[] args) throws Exception {
-        try {
-            launch(args);
-        } catch (Exception e) {
-            throw new Exception("Test1");
-        }
+    public static void main(String[] args) {
+        launch(args);
     }
 }

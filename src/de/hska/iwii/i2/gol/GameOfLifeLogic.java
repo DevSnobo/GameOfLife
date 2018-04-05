@@ -88,4 +88,8 @@ public class GameOfLifeLogic {
     private int addOne(int row, int col) {
         return (isCellAlive(row, col)) ? 1 : 0;
     }
+
+    public boolean[][] getNextGeneration() {
+        return nextGeneration;
+    }
 }
