@@ -631,8 +631,15 @@ public class Games {
          * @param generation Startgeneration.
          */
         public Description(String name, boolean[][] generation) {
+            assert name != null;
+            assert generation != null;
+
             this.name = name;
-            this.generation = generation;
+            this.generation = new boolean[generation.length][generation[0].length];
+
+            for (int i = 0; i < generation.length; i++) {
+                System.arraycopy(generation[i], 0, this.generation[i], 0, generation[i].length);
+            }
         }
 
         /**

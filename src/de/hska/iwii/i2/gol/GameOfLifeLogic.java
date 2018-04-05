@@ -13,13 +13,11 @@ public class GameOfLifeLogic {
 
     public void setStartGeneration(boolean[][] generation) {
         assert generation != null;
-        this.currentGeneration = generation;
-        //new boolean[generation.length][generation[0].length];
-        /*
+        this.currentGeneration = new boolean[generation.length][generation[0].length];
+
         for (int i = 0; i < generation.length; i++) {
             System.arraycopy(generation[i], 0, this.currentGeneration[i], 0, generation[i].length);
         }
-        */
     }
 
     public void nextGeneration() {
@@ -27,14 +25,13 @@ public class GameOfLifeLogic {
 
         for (int col = 0; col < currentGeneration.length; col++) {
             for (int row = 0; row < currentGeneration[col].length; row++) {
-                currentEvolution[col][row] = evaluateNextState(checkNeighbours(col, row));
+                currentEvolution[col][row] = evaluateNextState(checkNeighbours(col, row), col, row);
             }
         }
-        /*
+
         for (int i = 0; i < currentEvolution.length; i++) {
             System.arraycopy(currentEvolution[i], 0, this.currentGeneration[i], 0, currentEvolution[i].length);
         }
-        */
     }
 
     public boolean isCellAlive(int x, int y) {
@@ -44,8 +41,11 @@ public class GameOfLifeLogic {
         return false;
     }
 
-    private boolean evaluateNextState(int number) {
-        return number >= 2 && number < 4;
+    private boolean evaluateNextState(int number, int x, int y) {
+        if (isCellAlive(x, y)) {
+            return number >= 2 && number < 4;
+        }
+        return (number == 3);
     }
 
     private int checkNeighbours(int col, int row) {
@@ -81,7 +81,6 @@ public class GameOfLifeLogic {
                     break;
             }
         }
-        System.out.println(neighbourCounter);
         return neighbourCounter;
     }
 

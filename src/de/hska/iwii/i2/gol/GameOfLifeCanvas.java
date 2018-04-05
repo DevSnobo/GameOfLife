@@ -86,7 +86,12 @@ public class GameOfLifeCanvas extends Canvas {
      * @param startGeneration Start-Generation.
      */
     public void setStartGeneration(boolean[][] startGeneration) {
-        this.currentStartGeneration = startGeneration;
+        assert startGeneration != null;
+        this.currentStartGeneration = new boolean[startGeneration.length][startGeneration[0].length];
+
+        for (int i = 0; i < startGeneration.length; i++) {
+            System.arraycopy(startGeneration[i], 0, this.currentStartGeneration[i], 0, startGeneration[i].length);
+        }
     }
 
     /**
