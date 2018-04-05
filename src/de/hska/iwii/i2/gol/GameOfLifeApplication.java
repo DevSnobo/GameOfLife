@@ -137,7 +137,6 @@ public class GameOfLifeApplication extends Application {
     private void nextGeneration(PauseTransition pt) {
         if (currentStartGeneration != null) {
             gol.nextGeneration();
-            golCanvas.setStartGeneration(gol.getNextGeneration());
             golCanvas.paint();
         }
         pt.play();
