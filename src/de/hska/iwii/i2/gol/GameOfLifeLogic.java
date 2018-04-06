@@ -10,7 +10,10 @@ public class GameOfLifeLogic {
 
     private boolean[][] currentGeneration;
 
-
+    /**
+     * Setzt die Startgeneration.
+     * @param generation übergebene Startgeneration
+     */
     public void setStartGeneration(boolean[][] generation) {
         assert generation != null;
         this.currentGeneration = new boolean[generation.length][generation[0].length];
@@ -20,6 +23,9 @@ public class GameOfLifeLogic {
         }
     }
 
+    /**
+     * Berechnet die jeweils nächste Generation.
+     */
     public void nextGeneration() {
         boolean[][] currentEvolution = new boolean[currentGeneration.length][currentGeneration[0].length];
 
@@ -28,12 +34,17 @@ public class GameOfLifeLogic {
                 currentEvolution[col][row] = evaluateNextState(checkNeighbours(col, row), col, row);
             }
         }
-
         for (int i = 0; i < currentEvolution.length; i++) {
             System.arraycopy(currentEvolution[i], 0, this.currentGeneration[i], 0, currentEvolution[i].length);
         }
     }
 
+    /**
+     * Evaluiert den aktuellen Lebensstatus einer Zelle.
+     * @param x X Koordinate im 2D Array
+     * @param y Y Koordinate im 2D Array
+     * @return Gibt zurück, ob Zelle am Leben ist.
+     */
     public boolean isCellAlive(int x, int y) {
         if (x >= 0 && x < this.currentGeneration.length && y >= 0 && y < this.currentGeneration[0].length) {
             return this.currentGeneration[x][y];
