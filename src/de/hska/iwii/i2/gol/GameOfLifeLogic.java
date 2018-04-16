@@ -12,6 +12,7 @@ public class GameOfLifeLogic {
 
     /**
      * Setzt die Startgeneration.
+     *
      * @param generation übergebene Startgeneration
      */
     public void setStartGeneration(boolean[][] generation) {
@@ -41,15 +42,13 @@ public class GameOfLifeLogic {
 
     /**
      * Evaluiert den aktuellen Lebensstatus einer Zelle.
+     *
      * @param x X Koordinate im 2D Array
      * @param y Y Koordinate im 2D Array
      * @return Gibt zurück, ob Zelle am Leben ist.
      */
     public boolean isCellAlive(int x, int y) {
-        if (x >= 0 && x < this.currentGeneration.length && y >= 0 && y < this.currentGeneration[0].length) {
-            return this.currentGeneration[x][y];
-        }
-        return false;
+        return (x >= 0 && x < this.currentGeneration.length && y >= 0 && y < this.currentGeneration[0].length) && this.currentGeneration[x][y];
     }
 
     private boolean evaluateNextState(int number, int x, int y) {
