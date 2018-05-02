@@ -6,7 +6,7 @@ package de.hska.iwii.i2.gol;
  *
  * @author Holger Vogelsang
  */
-public class GameOfLifeLogic {
+public class GameOfLifeLogic implements Logic {
 
     private boolean[][] currentGeneration;
 
@@ -15,6 +15,7 @@ public class GameOfLifeLogic {
      *
      * @param generation übergebene Startgeneration
      */
+    @Override
     public void setStartGeneration(boolean[][] generation) {
         assert generation != null;
         this.currentGeneration = new boolean[generation.length][generation[0].length];
@@ -27,6 +28,7 @@ public class GameOfLifeLogic {
     /**
      * Berechnet die jeweils nächste Generation.
      */
+    @Override
     public void nextGeneration() {
         boolean[][] currentEvolution = new boolean[currentGeneration.length][currentGeneration[0].length];
 
@@ -47,6 +49,7 @@ public class GameOfLifeLogic {
      * @param y Y Koordinate im 2D Array
      * @return Gibt zurück, ob Zelle am Leben ist.
      */
+    @Override
     public boolean isCellAlive(int x, int y) {
         return (x >= 0 && x < this.currentGeneration.length && y >= 0 && y < this.currentGeneration[0].length) && this.currentGeneration[x][y];
     }
